@@ -22,17 +22,27 @@ LIB = ar -rcs $(NAME)
 
 REMOVE = rm -f
 
+GRN = \e[1;32m
+
+RST = \e[m
+
 all: $(NAME)
 
 $(NAME): *.o
-	@make -C libft
+	@printf '%s$(GRN)' "Compiling Libft... "
+	@make -s -C libft
+	@printf '%s\n$(RST)%s$(GRN)' "Done" "Compiling Ft_printf... "
 	@mv libft/libft.a ./$(NAME)
 	@$(LIB) *.o
+	@printf '%s$(RST)\n' "Go"
+
 bonus: all
+
 %.o: %.c
 	@$(CC) $(CFLAGS) $(SRC)
+
 clean:
-	@make clean -C libft
+	@make clean -s -C libft
 	@$(REMOVE) *.o
 
 fclean: clean

@@ -36,12 +36,14 @@ REMOVE = rm -f
 
 all: $(NAME)
 
-$(NAME): @$(OBJ)
-	@$(LIB) $(OBJ) 
+$(NAME): $(OBJ)
+	@$(LIB) $?
 
-bonus:
-	@$(COMPILE) $(SRC_BONUS)
-	@$(LIB) $(OBJ_BONUS)
+bonus: $(OBJ_BONUS)
+	@$(LIB) $?
+
+%.o: %.c
+	@$(COMPILE) $?
 
 clean:
 	@$(REMOVE) $(OBJ) $(OBJ_BONUS)
