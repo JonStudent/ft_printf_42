@@ -31,10 +31,10 @@ all: $(NAME)
 $(NAME): *.o
 	@printf '%s$(GRN)' "Compiling Libft... "
 	@make -s -C libft
-	@printf '%s\n$(RST)%s$(GRN)' "Done" "Compiling Ft_printf... "
+	@printf '%s\n$(RST)%s$(GRN)' "Ok" "Compiling Ft_printf... "
 	@mv libft/libft.a ./$(NAME)
 	@$(LIB) *.o
-	@printf '%s$(RST)\n' "Go"
+	@printf '%s$(RST)\n' "Done"
 
 bonus: all
 
@@ -42,11 +42,16 @@ bonus: all
 	@$(CC) $(CFLAGS) $(SRC)
 
 clean:
+	@printf '%s$(GRN)' "Cleaning Libft... "
 	@make clean -s -C libft
+	@printf '%s\n$(RST)%s$(GRN)' "Ok" "Cleaning Ft_printf... "
 	@$(REMOVE) *.o
+	@printf '%s$(RST)\n' "Ok"
 
 fclean: clean
+	@printf '%s$(GRN)' "Removing $(NAME)... "
 	@$(REMOVE) $(NAME)
+	@printf '%s$(RST)\n' "Done"
 
 re: fclean all
 
